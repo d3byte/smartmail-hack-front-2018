@@ -106,7 +106,7 @@ export default {
 section.subjects {
   margin: 0;
   padding: 0px;
-  background: #cecece;
+  background: #f0f0f0;
   width: 240px;
   height: 100vh;
   ms-user-select: none;
