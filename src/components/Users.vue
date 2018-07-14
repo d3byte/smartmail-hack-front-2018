@@ -111,6 +111,7 @@ section.users {
   -webkit-user-select: none;
   overflow: scroll;
   border-right: 1px solid #b9b9b9;
+  height: calc(100vh - 50px) !important;
 
   .users-item {
     border-bottom: 1px solid #b9b9b9;

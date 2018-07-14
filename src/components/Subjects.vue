@@ -95,6 +95,7 @@ export default {
 .subjects-wrapper {
   display: flex;
   flex-direction: row;
+  height: calc(100vh - 50px) !important;
 }
 
 .subjects-bottom {
