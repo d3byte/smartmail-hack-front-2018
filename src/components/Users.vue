@@ -82,18 +82,18 @@ export default {
   },
   methods: {
     curl(id) {
-      this.idActiveUser = id
-      this.backButton = id
-      this.$emit('input', true)
-      this.$emit('collapse', true)
+      this.idActiveUser = id;
+      this.backButton = id;
+      this.$emit("input", true);
+      this.$emit("collapse", true);
       return;
     },
     backButtonEvent() {
-      this.backButton = null
-      this.idActiveUser = null
-      this.$emit('input', false)
+      this.backButton = null;
+      this.idActiveUser = null;
+      this.$emit("input", false);
       return;
-    },
+    }
   }
 };
 </script>
@@ -102,7 +102,7 @@ export default {
 section.users {
   margin: 0;
   padding: 0px;
-  background: #cecece;
+  background: #f0f0f0;
   width: 320px;
   height: 100vh;
   ms-user-select: none;
