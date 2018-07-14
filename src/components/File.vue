@@ -28,89 +28,89 @@
 </template>
 
 <script>
-
 export default {
-    props: ['img'],
-    data() {
-        return {
-            node: [
-                {
-                    name: 'Название',
-                    date: 'Создан: 01.11.2018',
-                    title: 'Тема письма',
-                    size: '32 Кб',
-                }
-            ],
+  name: "File",
+  props: ["img"],
+  data() {
+    return {
+      node: [
+        {
+          name: "Название",
+          date: "Создан: 01.11.2018",
+          title: "Тема письма",
+          size: "32 Кб"
         }
-    },
-}
+      ]
+    };
+  }
+};
 </script>
 
 <style lang="scss">
 .node-item {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px;
-    width: 300px;
-    background: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px;
+  width: 300px;
+  background: white;
 }
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .container-node {
-    display: flex;
+  display: flex;
 }
 .node-text {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-    width: 70%;
-    font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 70%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 ul {
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
 ul li h3 {
-    margin-bottom: 5px;
-    margin-top: 5px;
-    font-weight: normal;
-    font-size: 22px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-weight: normal;
+  font-size: 22px;
 }
 ul li span {
-    display: block;
-    width: 100%;
-    font-size: 15px;
-    color: #585858;
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  color: #585858;
 }
 .node-img {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 30%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 30%;
 }
 .container-link {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: row;
-    padding: 15px 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  padding: 15px 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
 }
 ul li a {
-    display: inline-block;
-    width: 50%;
+  display: inline-block;
+  width: 50%;
 }
 li a {
-    text-decoration: none;
-    font-size: 19px;
-    color: #007adc;
-    font-size: 15px;
+  text-decoration: none;
+  font-size: 19px;
+  color: #007adc;
+  font-size: 15px;
 }
 .node-prewie {
-    width: 300px;
+  width: 300px;
 }
 </style>
