@@ -1,14 +1,17 @@
 
 <template>
-    <div class="le-debug">
+    <div class="subjects-wrapper">
     <section :class="'subjects ' + (backButton !== null ? 'hidden' : '')">
         <div class="back" @click="backButtonEvent">
             <a> Все темы </a>
         </div>
-        <div :class="'subjects-item ' + (idActiveUser === user.id ? 'active' : '')" @click="() => curl(user.id)" v-for="(user, index) in users" :key="index">
+        <div :class="'subjects-item ' + (idActiveUser === user.id ? 'active ' : '') + (index === users.length - 1 ? 'no-border' : '')" @click="() => curl(user.id)" v-for="(user, index) in users" :key="index">
             <div class="subject-data">
                 <p>{{user.subject}}</p>
             </div>
+        </div>
+        <div class="subjects-bottom">
+          <button class="more-button">Загрузить ещё</button>
         </div>
     </section>
     </div>
@@ -25,55 +28,46 @@ export default {
       users: [
         {
           id: 0,
-          name: "Vasya Pupkin",
           subject: "Subject 1",
           isActive: false
         },
         {
           id: 1,
-          name: "Vasya Sisya",
           subject: "Subject 2",
           isActive: false
         },
         {
           id: 2,
-          name: "Vasya Pisya",
           subject: "Subject 3",
           isActive: false
         },
         {
           id: 3,
-          name: "Vasya Sisya",
           subject: "Subject 2",
           isActive: false
         },
         {
           id: 4,
-          name: "Vasya Pisya",
           subject: "Subject 3",
           isActive: false
         },
         {
           id: 5,
-          name: "Vasya Sisya",
           subject: "Subject 2",
           isActive: false
         },
         {
           id: 6,
-          name: "Vasya Pisya",
           subject: "Subject 3",
           isActive: false
         },
         {
           id: 7,
-          name: "Vasya Sisya",
           subject: "Subject 2",
           isActive: false
         },
         {
           id: 8,
-          name: "Vasya Pisya",
           subject: "Subject 3",
           isActive: false
         }
@@ -98,9 +92,15 @@ export default {
 </script>
 
 <style lang="scss">
-.le-debug {
+.subjects-wrapper {
   display: flex;
   flex-direction: row;
+}
+
+.subjects-bottom {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
 }
 
 section.subjects {
@@ -124,9 +124,12 @@ section.subjects {
     justify-content: flex-start;
     cursor: pointer;
 
-    &:hover,
-    &:active {
+    &:hover {
       background: #c1c1c1;
+    }
+
+    &.no-border {
+      border-bottom: none !important;
     }
 
     &.active {
