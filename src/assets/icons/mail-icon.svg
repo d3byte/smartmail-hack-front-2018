@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="12px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>item</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="40" height="40" rx="4"></rect>
+        <path d="M13.2,2 C14.193,2 15,2.807 15,3.8 L15,12.2 C15,13.193 14.193,14 13.2,14 L2.8,14 C1.807,14 1,13.193 1,12.2 L1,3.8 C1,2.807 1.807,2 2.8,2 L13.2,2 L13.2,2 Z M5.049,8.094 L3.036,6.081 C2.74,5.786 2.74,5.306 3.036,5.011 C3.331,4.715 3.811,4.715 4.106,5.011 L7.992,8.897 L11.883,5.006 C12.179,4.71 12.658,4.71 12.954,5.006 C13.249,5.301 13.249,5.781 12.954,6.076 L10.944,8.085 L12.814,9.955 C13.096,10.237 13.096,10.695 12.814,10.977 C12.532,11.259 12.074,11.259 11.792,10.977 L9.922,9.107 L8.612,10.417 C8.589,10.449 8.563,10.48 8.534,10.509 C8.385,10.658 8.188,10.732 7.992,10.73 C7.796,10.732 7.6,10.658 7.45,10.509 C7.421,10.48 7.395,10.449 7.372,10.417 L6.071,9.117 L4.212,10.976 C3.93,11.258 3.472,11.258 3.19,10.976 C2.908,10.694 2.908,10.236 3.19,9.953 L5.049,8.094 L5.049,8.094 Z" id="path-3"></path>
+    </defs>
+    <g id="Dropdowns" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1366_3pane_list_filter" transform="translate(-21.000000, -138.000000)">
+            <g id="folders" transform="translate(8.000000, 84.000000)">
+                <g id="button-/-no-border-/-icon" transform="translate(0.000000, 40.000000)">
+                    <g id="bg" stroke-width="1" fill-rule="evenodd">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="mask"></g>
+                        <g mask="url(#mask-2)" fill="#FFFFFF" fill-opacity="0" id="state-/-normal">
+                            <g>
+                                <polygon id="bg" points="0 0 40 0 40 40 0 40"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="icon--/--categories--/--mail" transform="translate(12.000000, 12.000000)">
+                        <rect id="bounds" x="0" y="0" width="16" height="16"></rect>
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="Shape"></g>
+                        <g id="сolor--/--colorIcon" mask="url(#mask-4)" fill="#333333" fill-rule="evenodd">
+                            <g transform="translate(-3.000000, -3.000000)" id="bg">
+                                <rect x="0" y="0" width="21" height="21"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
