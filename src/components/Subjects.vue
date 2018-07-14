@@ -116,7 +116,6 @@ section.subjects {
   overflow: scroll;
   height: calc(100vh - 50px) !important;
   border-bottom: 1px solid #b9b9b9;
-  border-top: 1px solid #b9b9b9;
 
   .subjects-item {
     border-bottom: 1px solid #b9b9b9;

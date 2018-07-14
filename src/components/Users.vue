@@ -193,7 +193,7 @@ section.users {
       height: 40px;
       width: 100px;
       position: absolute;
-      top: 65px !important;
+      top: 50px !important;
       background: #cecece;
       justify-content: center;
       align-items: center;
@@ -202,7 +202,6 @@ section.users {
       -moz-transition: top 1s ease-out 0.5s;
       -o-transition: top 1s ease-out 0.5s;
       transition: top 1s ease-out 0.5s;
-      border-top: 1px solid #b9b9b9;
       border-bottom: 1px solid #b9b9b9;
       border-right: 1px solid #b9b9b9;
 
