@@ -54,6 +54,7 @@ nav.navigation-top {
   height: 50px;
   align-items: center;
   padding: 0 70px;
+  margin-bottom: 15px;
 
   .input-span-wrapper {
     display: flex;
