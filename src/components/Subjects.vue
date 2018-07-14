@@ -95,7 +95,6 @@ export default {
 .subjects-wrapper {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 50px) !important;
 }
 
 .subjects-bottom {
@@ -115,6 +114,7 @@ section.subjects {
   -khtml-user-select: none;
   -webkit-user-select: none;
   overflow: scroll;
+  height: calc(100vh - 50px) !important;
 
   .subjects-item {
     border-bottom: 1px solid #b9b9b9;
