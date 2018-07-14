@@ -6,6 +6,7 @@
                 <div class="image-wrapper">
                     <img src="@/assets/icons/menu-icon.svg" />
                 </div>
+                <span>Скрыть меню</span>
             </div>
         </li>
         <li>
@@ -92,7 +93,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .side-menu {
   width: 20%;
   height: 100vh;
@@ -128,6 +129,10 @@ export default {
         }
       }
 
+      &.toggle-menu {
+        border-bottom: 1px solid #b9b9b9;
+      }
+
       .menu-item {
         display: flex;
         align-items: center;
@@ -157,7 +162,7 @@ export default {
 
         & > img {
           width: 7px;
-          // margin-left: 10px;
+          margin-left: 10px;
           transform: rotate(180deg);
         }
 
@@ -183,5 +188,6 @@ export default {
       }
     }
   }
+
 }
 </style>
