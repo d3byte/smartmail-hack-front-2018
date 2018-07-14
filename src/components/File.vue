@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="node-prewie">
-                    
+                    <img src="../assets/160.png" alt="">
                 </div>
             </li>
         </ul>
@@ -51,6 +51,7 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px;
   width: 300px;
   background: white;
+  border-radius: 4px;
 }
 .container {
   display: flex;
@@ -112,5 +113,8 @@ li a {
 }
 .node-prewie {
   width: 300px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
 }
 </style>
