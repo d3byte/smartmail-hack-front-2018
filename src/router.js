@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 
 import Navbar from "./components/Navbar.vue";
 import Subjects from "./components/Subjects.vue";
+import File from "./components/File.vue";
 
 Vue.use(Router);
 
@@ -19,6 +20,11 @@ export default new Router({
       path: "/4",
       name: "Subjects",
       component: Subjects
+    },
+    {
+      path: "/3",
+      name: "File",
+      component: File
     }
   ]
 });
