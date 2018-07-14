@@ -1,7 +1,7 @@
 <template>
 <aside :class="`side-menu ${collapsed && 'collapsed'}`">
     <ul>
-        <li class="toggle-menu" @click="collapsed = false">
+        <li class="toggle-menu" @click="collapse">
             <div class="menu-item">
                 <div class="image-wrapper">
                     <img src="@/assets/icons/menu-icon.svg" />
@@ -67,11 +67,11 @@
 
 <script>
 export default {
+    props: ['collapsed'],
     data() {
         return {
             toggled: [],
             active: null,
-            collapsed: false,
         }
     },
     methods: {
@@ -84,6 +84,9 @@ export default {
         },
         select(id) {
             this.active = id
+        },
+        collapse() {
+            this.$emit('input', !this.collapsed)
         }
     }
 }
@@ -93,19 +96,11 @@ export default {
 .side-menu {
     width: 20%;
     height: 100vh;
-    border-right: 1px solid black;
+    border-right: 1px solid #b9b9b9;
     background: rgb(240, 240, 240);
-
-    .toggle-menu {
-        display: none;
-    }
 
     &.collapsed {
         width: 70px;
-
-        .toggle-menu {
-            display: block;
-        }
 
         ul li {
             .menu-item {
@@ -158,7 +153,7 @@ export default {
 
                 & > img {
                     width: 7px;
-                    margin-left: 10px;
+                    // margin-left: 10px;
                     transform: rotate(180deg);
                 }
 
@@ -190,27 +185,6 @@ export default {
             }
 
         }
-
-    }
-
-    & > ul {
-        
-        &.collapsed {
-            .toggle-menu {
-                display: block;
-            }
-
-            & > li {
-                .menu-item {
-                    & > input[type="checkbox"], & > span, & > img {
-                        display: none;
-                    }
-                }
-            }
-
-        }
-
-        
 
     }
 }

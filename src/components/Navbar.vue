@@ -8,7 +8,7 @@
             <div class="tab" @click="selectTab('/2')" :class="(path === '/2' ? 'active' : '')">
             Контакты
             </div>
-            <div class="tab" @click="selectTab('/3')" :class="(path === '/3' ? 'active' : '')">
+            <div class="tab" @click="selectTab('/')" :class="(path === '/' ? 'active' : '')">
             Файлы
             </div>
             <div class="tab" @click="selectTab('/4')" :class="(path === '/4' ? 'active' : '')">

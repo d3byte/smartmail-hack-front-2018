@@ -82,14 +82,18 @@ export default {
   },
   methods: {
     curl(id) {
-      this.idActiveUser = id;
-      this.backButton = id;
+      this.idActiveUser = id
+      this.backButton = id
+      this.$emit('input', true)
+      this.$emit('collapse', true)
       return;
     },
     backButtonEvent() {
-      this.backButton = null;
+      this.backButton = null
+      this.idActiveUser = null
+      this.$emit('input', false)
       return;
-    }
+    },
   }
 };
 </script>
@@ -187,7 +191,7 @@ section.users {
       display: flex;
       height: 40px;
       width: 100px;
-      position: fixed;
+      position: absolute;
       top: 50px !important;
       background: #cecece;
       justify-content: center;
@@ -198,6 +202,7 @@ section.users {
       -o-transition: top 1s ease-out 0.5s;
       transition: top 1s ease-out 0.5s;
       border-bottom: 1px solid #b9b9b9;
+      border-right: 1px solid #b9b9b9;
 
       img {
         width: 10px;
