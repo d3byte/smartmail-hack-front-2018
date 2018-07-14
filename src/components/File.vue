@@ -46,7 +46,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .node-item {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px;
   width: 300px;
