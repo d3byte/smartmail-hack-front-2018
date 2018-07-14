@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10.91,12.806 C9.793,13.56 8.448,14 7,14 C3.137,14 0,10.863 0,7 C0,3.137 3.137,0 7,0 C10.863,0 14,3.137 14,7 C14,8.438 13.565,9.776 12.82,10.889 L14.934,13.002 C15.462,13.53 15.462,14.388 14.934,14.916 C14.406,15.444 13.548,15.444 13.02,14.916 L10.91,12.806 L10.91,12.806 Z M7,2.477 C9.497,2.477 11.523,4.503 11.523,7 C11.523,9.497 9.497,11.523 7,11.523 C4.503,11.523 2.477,9.497 2.477,7 C2.477,4.503 4.503,2.477 7,2.477 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="button-/-list-/-sub" transform="translate(-28.000000, -12.000000)">
+            <g id="icon--/--navigation--/--search" transform="translate(28.000000, 12.000000)">
+                <rect id="bounds" x="0" y="0" width="16" height="16"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Shape"></g>
+                <g id="сolor--/--colorIcon" mask="url(#mask-2)" fill="#333333" fill-rule="evenodd">
+                    <g transform="translate(-3.000000, -3.000000)">
+                        <rect x="0" y="0" width="21" height="21"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="8px" viewBox="0 0 6 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>button / no-border / icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="40" height="40" rx="4"></rect>
+        <path d="M9.365,4.228 C9.538,4.085 9.759,4 10,4 C10.552,4 11,4.448 11,5 L11,11 C11,11.552 10.552,12 10,12 C9.759,12 9.538,11.915 9.365,11.772 L5.411,8.808 C5.162,8.626 5,8.332 5,8 C5,7.668 5.162,7.374 5.411,7.192 L9.365,4.228 Z" id="path-3"></path>
+    </defs>
+    <g id="Inbox" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1366_3pane_select" transform="translate(-25.000000, -48.000000)">
+            <g id="header" transform="translate(0.000000, 28.000000)">
+                <g id="button-/-no-border-/-icon" transform="translate(8.000000, 4.000000)">
+                    <g id="bg" stroke-width="1" fill-rule="evenodd">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="mask"></g>
+                        <g mask="url(#mask-2)" fill="#333333" fill-opacity="0" id="state-/-normal">
+                            <g>
+                                <polygon id="bg" points="0 0 40 0 40 40 0 40"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="icon--/--navigation--/--drop_previous" transform="translate(12.000000, 12.000000)">
+                        <rect id="bounds" x="0" y="0" width="16" height="16"></rect>
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="Shape"></g>
+                        <g id="сolor--/--colorBg-" mask="url(#mask-4)" fill-rule="evenodd" stroke-width="1">
+                            <g transform="translate(-3.000000, -3.000000)">
+                                <g>
+                                    <rect fill="#333333" x="0" y="0" width="21" height="21"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="5px" viewBox="0 0 6 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M5.171,8.774 C5.064,8.903 5,9.069 5,9.25 C5,9.664 5.336,10 5.75,10 L10.25,10 C10.664,10 11,9.664 11,9.25 C11,9.069 10.936,8.903 10.829,8.774 L10.829,8.774 L8.606,5.808 C8.47,5.622 8.249,5.5 8,5.5 C7.751,5.5 7.53,5.622 7.394,5.808 L7.394,5.808 L5.171,8.774 L5.171,8.774 L5.171,8.774 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="button-/-list-/-multi" transform="translate(-125.000000, -17.000000)">
+            <g id="icon--/--navigation--/--drop_up_small" transform="translate(128.000000, 20.000000) rotate(-360.000000) translate(-128.000000, -20.000000) translate(120.000000, 12.000000)">
+                <rect id="bounds" x="0" y="0" width="16" height="16"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Shape"></g>
+                <g id="сolor--/--colorIcon" mask="url(#mask-2)" fill="#333333" fill-rule="evenodd">
+                    <g transform="translate(-3.000000, -3.000000)">
+                        <rect x="0" y="0" width="21" height="21"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
