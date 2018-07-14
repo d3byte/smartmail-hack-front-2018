@@ -30,7 +30,7 @@
 <script>
 export default {
   name: "File",
-  props: ["img"],
+  props: ['img', 'data'],
   data() {
     return {
       node: [
