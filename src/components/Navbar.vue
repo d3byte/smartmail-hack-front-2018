@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav class="navigation-top">
         <div class="wrapper">
             <img src="../assets/logo.png">
             <div class="tab" @click="selectTab('/1')" :class="(path === '/1' ? 'active' : '')">
@@ -26,37 +26,34 @@
 </template>
 
 <script>
-    export default {
-        name: 'Navbar',
-        data() {
-            return {
-                path: null,
-            }
-        },
-        methods: {
-            selectTab(path) {
-                this.path = path
-                this.$router.push(path)
-            }
-        },
-        created() {
-            this.path = this.$route.path
-            //this.$route.path
+export default {
+    name: 'Navbar',
+    data() {
+        return {
+            path: null,
         }
+    },
+    methods: {
+        selectTab(path) {
+            this.path = path
+            this.$router.push(path)
+        }
+    },
+    created() {
+        this.path = this.$route.path
+        //this.$route.path
     }
+}
 </script>
 
 <style lang="scss">
-    nav {
-        display: flex;
-        // flex-direction: row;
-        justify-content: space-between;
-        background: #168de2;
-        height: 50px;
-        align-items: center;
-        padding: 0 70px;
-        // justify-content: flex-start;
-    }
+nav.navigation-top {
+    display: flex;
+    justify-content: space-between;
+    background: #168de2;
+    height: 50px;
+    align-items: center;
+    padding: 0 70px;
 
     .input-span-wrapper {
         display: flex;
@@ -84,10 +81,9 @@
         width: 142px;
         height: 30px;
         border: none;
-    }
-
-    input::placeholder {
-        font-size: 13px;
+        &:placeholder {
+            font-size: 13px;
+        }
     }
 
     i.material-icons {
@@ -100,36 +96,37 @@
         margin-right: 50px;
     }
 
-.tab {
-    overflow: hidden;
-    background-color: #168de2;
-}
+    .tab {
+        overflow: hidden;
+        background-color: #168de2;
+    }
 
-.wrapper {
-    display: flex;
-    align-items: center;
-}
+    .wrapper {
+        display: flex;
+        align-items: center;
+    }
 
-.tab {
-    display: flex;
-    background-color: inherit;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: 0.3s;
-    height: 50px;
-    align-items: center;
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-}
+    .tab {
+        display: flex;
+        background-color: inherit;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s;
+        height: 50px;
+        align-items: center;
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
 
-.tab:hover {
-    background-color: #137ecb;
-}
+        &:hover {
+            background-color: #137ecb;
+        }
 
-.tab.active {
-    background-color: #1170b4;
-}
+        &.active {
+            background-color: #1170b4;
+        }
+    }    
 
+}
 </style>
