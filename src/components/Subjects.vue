@@ -1,13 +1,13 @@
 
 <template>
     <div class="subjects-wrapper">
-    <section :class="'subjects ' + (backButton !== null ? 'hidden' : '')">
-        <div class="back" @click="backButtonEvent">
-            <a> Все темы </a>
+    <section class="subjects">
+      <div class="less-button" v-show="idActiveSubject !== null" @click="deSelectSubject">
+            <p>Все темы</p>
         </div>
-        <div :class="'subjects-item ' + (idActiveUser === user.id ? 'active ' : '') + (index === users.length - 1 ? 'no-border' : '')" @click="() => curl(user.id)" v-for="(user, index) in users" :key="index">
+        <div :class="'subjects-item ' + (idActiveSubject === subject.id ? 'active ' : '') + (index === subjects.length - 1 ? 'no-border' : '')" @click="() => curl(subject.id)" v-for="(subject, index) in subjects" :key="index">
             <div class="subject-data">
-                <p>{{user.subject}}</p>
+                <p>{{subject.value}}</p>
             </div>
         </div>
         <div class="subjects-bottom">
@@ -18,90 +18,113 @@
 </template>
 
 <script>
-import Users from "./Users.vue";
 export default {
   name: "Subjects",
   data() {
     return {
-      idActiveUser: null,
+      idActiveSubject: null,
       backButton: null,
-      users: [
+      subjects: [
         {
           id: 0,
-          subject: "Subject 1",
-          isActive: false
+          value: "Subject 1"
         },
         {
           id: 1,
-          subject: "Subject 2",
-          isActive: false
+          value: "Subject 2"
         },
         {
           id: 2,
-          subject: "Subject 3",
-          isActive: false
+          value: "Subject 3"
         },
         {
           id: 3,
-          subject: "Subject 2",
-          isActive: false
+          value: "Subject 2"
         },
         {
           id: 4,
-          subject: "Subject 3",
-          isActive: false
+          value: "Subject 3"
         },
         {
           id: 5,
-          subject: "Subject 2",
-          isActive: false
+          value: "Subject 2"
         },
         {
           id: 6,
-          subject: "Subject 3",
-          isActive: false
+          value: "Subject 3"
         },
         {
           id: 7,
-          subject: "Subject 2",
-          isActive: false
+          value: "Subject 2"
         },
         {
           id: 8,
-          subject: "Subject 3",
-          isActive: false
+          value: "Subject 3"
         }
       ]
     };
   },
   methods: {
     curl(id) {
-      this.idActiveUser = id;
-      //   this.backButton = id;
+      this.idActiveSubject = id;
       return;
     },
     backButtonEvent() {
       this.backButton = null;
       return;
+    },
+    deSelectSubject() {
+      this.idActiveSubject = null;
     }
   },
-  components: {
-    Users
-  }
+  components: {}
 };
 </script>
 
 <style lang="scss">
 .subjects-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
+  .less-button {
+    display: flex;
+    height: 40px;
+    top: 50px;
+    background: #e8e8e8;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-transition: top 1s ease-out 0.5s;
+    -moz-transition: top 1s ease-out 0.5s;
+    -o-transition: top 1s ease-out 0.5s;
+    transition: top 1s ease-out 0.5s;
+    border-bottom: 1px solid #b9b9b9;
+    font-size: 13px;
+    &:hover {
+      background: #c8c8c8;
+    }
+  }
 }
 
 .subjects-bottom {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 25px;
 }
+
+// .less-button {
+//   background: #b3b3b3;
+//   border-style: none;
+//   padding: 10px;
+//   transition: 0.3s;
+//   font-size: 13px;
+//   margin-top: 10px;
+// }
+
+// .less-button:hover {
+//   background: ##c8c8c8;
+// }
 
 section.subjects {
   margin: 0;
@@ -127,7 +150,7 @@ section.subjects {
     cursor: pointer;
 
     &:hover {
-      background: #c1c1c1;
+      background: #e8e8e8;
     }
 
     &.no-border {
@@ -135,7 +158,7 @@ section.subjects {
     }
 
     &.active {
-      background: #b9b9b9;
+      background: #d8d8d8;
     }
 
     .subject-data {
@@ -178,27 +201,6 @@ section.subjects {
     // .user-data {
     //   display: none !important;
     // }
-
-    .back {
-      display: flex;
-      height: 40px;
-      position: fixed;
-      top: 50px;
-      background: #cecece;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      -webkit-transition: top 1s ease-out 0.5s;
-      -moz-transition: top 1s ease-out 0.5s;
-      -o-transition: top 1s ease-out 0.5s;
-      transition: top 1s ease-out 0.5s;
-      border-bottom: 1px solid #b9b9b9;
-
-      img {
-        width: 10px;
-        height: 10px;
-      }
-    }
   }
 }
 </style>

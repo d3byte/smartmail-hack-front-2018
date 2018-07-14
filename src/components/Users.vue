@@ -102,7 +102,7 @@ export default {
 section.users {
   margin: 0;
   padding: 0px;
-  background: #f0f0f0;
+  background: #fafafa;
   width: 320px;
   height: 100vh;
   ms-user-select: none;
@@ -122,13 +122,12 @@ section.users {
     justify-content: flex-start;
     cursor: pointer;
 
-    &:hover,
-    &:active {
-      background: #c1c1c1;
+    &:hover {
+      background: #e8e8e8;
     }
 
     &.active {
-      background: #b9b9b9;
+      background: #d8d8d8;
     }
 
     .user-img {
@@ -194,7 +193,7 @@ section.users {
       width: 100px;
       position: absolute;
       top: 50px !important;
-      background: #cecece;
+      background: #e8e8e8;
       justify-content: center;
       align-items: center;
       cursor: pointer;
