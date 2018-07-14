@@ -7,7 +7,7 @@
         </div>
         <div :class="'subjects-item ' + (idActiveSubject === subject.id ? 'active ' : '') + (index === subjects.length - 1 ? 'no-border' : '')" @click="() => curl(subject.id)" v-for="(subject, index) in subjects" :key="index">
             <div class="subject-data">
-                <p>{{subject.value}}</p>
+                <p v-html="subject.subject"></p>
             </div>
         </div>
         <div class="subjects-bottom">
@@ -19,54 +19,18 @@
 
 <script>
 export default {
+  props: ['subjects'],
   name: "Subjects",
   data() {
     return {
       idActiveSubject: null,
       backButton: null,
-      subjects: [
-        {
-          id: 0,
-          value: "Subject 1"
-        },
-        {
-          id: 1,
-          value: "Subject 2"
-        },
-        {
-          id: 2,
-          value: "Subject 3"
-        },
-        {
-          id: 3,
-          value: "Subject 2"
-        },
-        {
-          id: 4,
-          value: "Subject 3"
-        },
-        {
-          id: 5,
-          value: "Subject 2"
-        },
-        {
-          id: 6,
-          value: "Subject 3"
-        },
-        {
-          id: 7,
-          value: "Subject 2"
-        },
-        {
-          id: 8,
-          value: "Subject 3"
-        }
-      ]
     };
   },
   methods: {
     curl(id) {
       this.idActiveSubject = id;
+      this.$emit('input', this.subjects.filter(filter => filter.id === id)[0])
       return;
     },
     backButtonEvent() {

@@ -3,98 +3,46 @@
         <div class="back" @click="backButtonEvent">
             <img src="@/assets/button/icon.svg">
         </div>
-        <div :class="'users-item ' + (idActiveUser === user.id ? 'active' : '')" @click="() => curl(user.id)" v-for="(user, index) in users" :key="index">
+        <div v-if="!emptyMessages" :class="'users-item ' + (emailActiveUser === user.email ? 'active' : '')" @click="() => curl(user.email)" v-for="user in users" :key="user.email">
             <div class="user-img">
-                <img src="../assets/ava.png" class="user-file" />
+                <img :src="user.avatar">
             </div>
             <div class="user-data">
                 <h4>{{user.name}}</h4>
-                <p>{{user.subject}}</p>
+                <p>{{user.email}}</p>
             </div>
         </div>
+        <p class="no-attaches" v-else>Нет сообщений с вложениями</p>
     </section>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  props: ['users', 'folder', 'emptyMessages'],
   name: "Users",
   data() {
     return {
-      idActiveUser: null,
+      emailActiveUser: null,
       backButton: null,
-      users: [
-        {
-          id: 0,
-          name: "Vasya Pupkin",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 1,
-          name: "Vasya Sisya",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 2,
-          name: "Vasya Pisya",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 3,
-          name: "Vasya Sisya",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 4,
-          name: "Vasya Pisya",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 5,
-          name: "Vasya Sisya",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 6,
-          name: "Vasya Pisya",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 7,
-          name: "Vasya Sisya",
-          subject: "Email",
-          isActive: false
-        },
-        {
-          id: 8,
-          name: "Vasya Pisya",
-          subject: "Email",
-          isActive: false
-        }
-      ]
     };
   },
   methods: {
     curl(id) {
-      this.idActiveUser = id;
+      this.emailActiveUser = id;
       this.backButton = id;
       this.$emit("input", true);
       this.$emit("collapse", true);
+      this.$emit('user', this.users.filter(user => user.email === id)[0])
       return;
     },
     backButtonEvent() {
       this.backButton = null;
-      this.idActiveUser = null;
+      this.emailActiveUser = null;
       this.$emit("input", false);
       return;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -210,6 +158,12 @@ section.users {
       }
     }
   }
+
+  .no-attaches {
+    text-align: center;
+    margin-top: 40px;
+  }
+
 }
 </style>
 

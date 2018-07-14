@@ -6,7 +6,7 @@ import store from './store'
 
 Vue.use(VueResource)
 
-Vue.http.options.root = ''
+Vue.http.options.root = 'http://localhost:3000/'
 
 Vue.config.productionTip = false
 

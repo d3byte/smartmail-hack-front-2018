@@ -1,47 +1,37 @@
 <template>
-    <div class="file-bar">
-        <ul>
-            <li v-for="(item, index) in node" :key="index" class="node-item">
-                <div class="container">
-                    <div class="container-node">
-                        <div class="node-text">
-                            <h3>{{item.name}}</h3>
-                            <span>{{item.date}}</span>
-                            <span>{{item.title}}</span>
-                            <span>{{item.size}}</span>
-                        </div>
-                        <div class="node-img">
-                            <img :src="img" width="45px" height="60px" alt="Documents">
-                        </div>
-                    </div>
-                    <div class="container-link">
-                        <a href="">Посмотреть</a>
-                        <a href="">Скачать</a>
-                    </div>
-                </div>
-                <div class="node-prewie">
-                    <img src="../assets/160.png" alt="">
-                </div>
-            </li>
-        </ul>
+<div :key="data.id" class="node-item">
+    <div class="container">
+        <div class="container-node">
+            <div class="node-text">
+                <h3>{{data.name}}</h3>
+                <span>{{data.date}}</span>
+                <span v-html="subject.subject"></span>
+                <span>{{data.size}} Б</span>
+            </div>
+            <div class="node-img">
+                <img :src="((img || {}).data) || file" width="45px" height="60px" alt="Documents">
+            </div>
+        </div>
+        <div class="container-link">
+            <a :href="data.href.view || ''" target="_blank">Посмотреть</a>
+            <a :href="data.href.download || ''" target="_blank">Скачать</a>
+        </div>
     </div>
+    <!-- <div class="node-prewie">
+        <img :src="data.thumbnails.image.default" :alt="data.name">
+    </div> -->
+</div>
 </template>
 
 <script>
+import file from '@/assets/docx/file.png'
 export default {
-  name: "File",
-  props: ['img', 'data'],
+  name: "file",
+  props: ['img', 'data', 'subject'],
   data() {
     return {
-      node: [
-        {
-          name: "Название",
-          date: "Создан: 01.11.2018",
-          title: "Тема письма",
-          size: "32 Кб"
-        }
-      ]
-    };
+      file,
+    }
   }
 };
 </script>
@@ -68,20 +58,14 @@ export default {
   width: 70%;
   font-family: Arial, Helvetica, sans-serif;
 }
-ul {
-  padding: 0px;
-  margin: 0px;
-}
-li {
-  list-style-type: none;
-}
-ul li h3 {
+
+div h3 {
   margin-bottom: 5px;
   margin-top: 5px;
   font-weight: normal;
   font-size: 22px;
 }
-ul li span {
+div span {
   display: block;
   width: 100%;
   font-size: 15px;
@@ -101,11 +85,11 @@ ul li span {
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
-ul li a {
+a {
   display: inline-block;
   width: 50%;
 }
-li a {
+a {
   text-decoration: none;
   font-size: 19px;
   color: #007adc;

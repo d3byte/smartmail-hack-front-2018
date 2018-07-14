@@ -9,58 +9,27 @@
                 <span>Скрыть меню</span>
             </div>
         </li>
-        <li>
-            <div :class="`menu-item ${active === 0 ? 'active' : ''}`" @click="() => select(0)">
-                <input type="checkbox" @change="() => toggle(0)" />
+        <li v-for="folder in folders" :key="folder.id">
+            <div :class="`menu-item ${active === folder.id ? 'active' : ''}`" @click="() => select(folder.id)">
+                <input v-if="folder.children.length > 0" type="checkbox" @change="() => toggle(folder.id)" />
                 <div class="image-wrapper">
-                    <img src="@/assets/icons/mail-icon.svg" alt="menu-icon" />
+                    <img v-if="folder.name === 'Входящие'" src="@/assets/icons/mail-icon.svg" alt="menu-icon" />
+                    <img v-else-if="folder.name === 'Отправленные'" src="@/assets/icons/reply-icon.svg" alt="menu-icon" />
+                    <img v-else src="@/assets/icons/folder-icon.svg" alt="menu-icon" />
                 </div>
-                <span>Входящие</span>
-                <img src="@/assets/icons/drop-icon.svg" />
+                <span>{{ folder.name }}</span>
+                <img v-if="folder.children.length > 0" src="@/assets/icons/drop-icon.svg" />
             </div>
-            <ul :class="`sub-menu ${toggled.includes(0) ? 'toggled' : ''}`">
-                <li>
-                    <div class="menu-item">
+            <ul v-if="folder.children.length > 0" :class="`sub-menu ${toggled.includes(folder.id) ? 'toggled' : ''}`">
+                <li v-for="subFolder in folder.children" :key="subFolder.id">
+                    <div :class="`menu-item ${active === subFolder.id ? 'active' : ''}`" @click="() => select(subFolder.id)">
                         <div class="image-wrapper">
-                            <img src="@/assets/icons/users-icon.svg" alt="menu-icon" />
+                            <img src="@/assets/icons/folder-icon.svg" alt="menu-icon" />
                         </div>
-                        Социальные сети
+                        {{ subFolder.name }}
                     </div>
                 </li>
-                <li>
-                    <div class="menu-item">
-                        <div class="image-wrapper">
-                            <img src="@/assets/icons/mailings-icon.svg" alt="menu-icon" />
-                        </div>
-                        Рассылки
-                    </div>
-                </li>
-                <li>
-                    <div class="menu-item">
-                        <div class="image-wrapper">
-                            <img src="@/assets/icons/discount-icon.svg" alt="menu-icon" />
-                        </div>
-                        Скидки
-                    </div>
-                </li>
-
             </ul>
-        </li>
-        <li>
-            <div :class="`menu-item ${active === 1 ? 'active' : ''}`" @click="() => select(1)">
-                <div class="image-wrapper">
-                    <img src="@/assets/icons/folder-icon.svg" alt="menu-icon" />
-                </div>
-                <span>Важное</span>
-            </div>
-        </li>
-        <li>
-            <div :class="`menu-item ${active === 2 ? 'active' : ''}`" @click="() => select(2)">
-                <div class="image-wrapper">
-                    <img src="@/assets/icons/reply-icon.svg" alt="menu-icon" />
-                </div>
-                <span>Отправленные</span>
-            </div>
         </li>
     </ul>
 </aside>
@@ -68,7 +37,7 @@
 
 <script>
 export default {
-  props: ["collapsed"],
+  props: ['collapsed', 'folders'],
   data() {
     return {
       toggled: [],
@@ -78,16 +47,17 @@ export default {
   methods: {
     toggle(id) {
       if (this.toggled.includes(id)) {
-        this.toggled = this.toggled.filter(item => item !== id);
-        return;
+        this.toggled = this.toggled.filter(item => item !== id)
+        return
       }
-      this.toggled.push(id);
+      this.toggled.push(id)
     },
     select(id) {
-      this.active = id;
+      this.active = id
+      this.$emit('folder', this.folders.filter(item => item.id === id)[0])
     },
     collapse() {
-      this.$emit("input", !this.collapsed);
+      this.$emit("input", !this.collapsed)
     }
   }
 };
@@ -95,13 +65,23 @@ export default {
 
 <style lang="scss" scoped>
 .side-menu {
-  width: 20%;
+  width: 250px;
   height: 100vh;
+  padding: 5px;
   border-right: 1px solid #b9b9b9;
   background: rgb(255, 255, 255);
   height: calc(100vh - 50px) !important;
+  -webkit-animation: slide-in .4s 1 ease-in-out;
+  -moz-animation: slide-in .4s 1 ease-in-out;
+  -o-animation: slide-in .4s 1 ease-in-out;
+  animation: slide-in .4s 1 ease-in-out;
+  animation-fill-mode: forwards;
   &.collapsed {
-    width: 70px;
+    -webkit-animation: slide-out .4s 1 ease-in-out;
+    -moz-animation: slide-out .4s 1 ease-in-out;
+    -o-animation: slide-out .4s 1 ease-in-out;
+    animation: slide-out .4s 1 ease-in-out;
+    animation-fill-mode: forwards;
 
     ul li {
       .menu-item {
@@ -109,6 +89,10 @@ export default {
         & > span,
         & > img {
           display: none;
+        }
+
+        .image-wrapper {
+          width: 100% !important;
         }
       }
       .sub-menu {
@@ -119,10 +103,14 @@ export default {
 
   ul {
     margin: 0;
-    padding: 0 15px;
+    padding: 2px 5px;
     list-style: none;
 
     li {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      font-weight: normal;
+      padding: 2px 0;
       &.active {
         .image-wrapper {
           background: rgb(221, 221, 221);
@@ -131,6 +119,7 @@ export default {
 
       &.toggle-menu {
         border-bottom: 1px solid #b9b9b9;
+        padding-bottom: 6px; 
       }
 
       .menu-item {
@@ -146,12 +135,12 @@ export default {
         }
 
         .image-wrapper {
+          
           display: flex;
           align-items: center;
           justify-content: center;
           width: 40px;
           height: 40px;
-          padding: 10px;
           border-radius: 4px;
 
           // Icon
@@ -182,12 +171,31 @@ export default {
       }
 
       .sub-menu {
+        padding-left: 12px;
         &:not(.toggled) {
           display: none;
         }
       }
+
     }
   }
+}
 
+@keyframes slide-out {
+  0% {
+    width: 250px;
+  }
+  100% {
+    width: 70px;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    width: 70px;
+  }
+  100% {
+    width: 250px;
+  }
 }
 </style>
