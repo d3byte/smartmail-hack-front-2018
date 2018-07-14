@@ -98,7 +98,7 @@ export default {
   height: 100vh;
   border-right: 1px solid #b9b9b9;
   background: rgb(255, 255, 255);
-
+  height: calc(100vh - 50px) !important;
   &.collapsed {
     width: 70px;
 
@@ -111,7 +111,7 @@ export default {
         }
       }
       .sub-menu {
-          display: none;
+        display: none;
       }
     }
   }
