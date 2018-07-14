@@ -17,8 +17,18 @@ export default {
   data() {
     return {
       isSubjectVisible: false,
-      collapsed: false
+      collapsed: false,
     }
+  },
+  computed: {
+    icons() {
+      return this.$store.state.icons
+    }
+  },
+  methods: {
+    determineIcon(file) {
+      return this.icons.filter(icon => file.ext === icon.name)[0]
+    },
   },
   components: {
     File, 
