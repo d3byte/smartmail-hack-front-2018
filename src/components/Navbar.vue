@@ -27,106 +27,106 @@
 
 <script>
 export default {
-    name: 'Navbar',
-    data() {
-        return {
-            path: null,
-        }
-    },
-    methods: {
-        selectTab(path) {
-            this.path = path
-            this.$router.push(path)
-        }
-    },
-    created() {
-        this.path = this.$route.path
-        //this.$route.path
+  name: "Navbar",
+  data() {
+    return {
+      path: null
+    };
+  },
+  methods: {
+    selectTab(path) {
+      this.path = path;
+      this.$router.push(path);
     }
-}
+  },
+  created() {
+    this.path = this.$route.path;
+    //this.$route.path
+  }
+};
 </script>
 
 <style lang="scss">
 nav.navigation-top {
+  display: flex;
+  justify-content: space-between;
+  background: #168de2;
+  height: 50px;
+  align-items: center;
+  padding: 0 70px;
+  margin-bottom: 15px;
+
+  .input-span-wrapper {
     display: flex;
     justify-content: space-between;
-    background: #168de2;
+    border-radius: 4px;
+    border-style: none;
+    height: 30px;
+    width: 202px;
+    background: white;
+    vertical-align: middle;
+  }
+
+  .input-span-inner {
+    width: 142px !important;
+    margin-left: 10px;
+    &:empty {
+      width: 142px;
+      height: 30px;
+    }
+  }
+
+  input {
+    border-radius: 4px;
+    border-style: none;
+    width: 142px;
+    height: 30px;
+    border: none;
+    &:placeholder {
+      font-size: 13px;
+    }
+  }
+
+  i.material-icons {
+    padding: 5px;
+    font-size: 20px;
+  }
+
+  img {
+    width: 135px;
+    margin-right: 50px;
+  }
+
+  .tab {
+    overflow: hidden;
+    background-color: #168de2;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .tab {
+    display: flex;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
     height: 50px;
     align-items: center;
-    padding: 0 70px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
 
-    .input-span-wrapper {
-        display: flex;
-        justify-content: space-between;
-        border-radius: 3px;
-        border-style: none;
-        height: 30px;
-        width: 202px;
-        background: white;
-        vertical-align: middle;
+    &:hover {
+      background-color: #137ecb;
     }
 
-    .input-span-inner {
-        width: 142px !important;
-        margin-left: 10px;
-        &:empty{
-            width: 142px;
-            height: 30px;
-        }
+    &.active {
+      background-color: #1170b4;
     }
-
-    input {
-        border-radius: 3px;
-        border-style: none;
-        width: 142px;
-        height: 30px;
-        border: none;
-        &:placeholder {
-            font-size: 13px;
-        }
-    }
-
-    i.material-icons {
-        padding: 5px;
-        font-size: 20px;
-    }
-
-    img {
-        width: 135px;
-        margin-right: 50px;
-    }
-
-    .tab {
-        overflow: hidden;
-        background-color: #168de2;
-    }
-
-    .wrapper {
-        display: flex;
-        align-items: center;
-    }
-
-    .tab {
-        display: flex;
-        background-color: inherit;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        transition: 0.3s;
-        height: 50px;
-        align-items: center;
-        color: white;
-        padding-left: 10px;
-        padding-right: 10px;
-
-        &:hover {
-            background-color: #137ecb;
-        }
-
-        &.active {
-            background-color: #1170b4;
-        }
-    }    
-
+  }
 }
 </style>
