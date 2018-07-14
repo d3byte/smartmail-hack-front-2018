@@ -110,6 +110,9 @@ export default {
           display: none;
         }
       }
+      .sub-menu {
+          display: none;
+      }
     }
   }
 
