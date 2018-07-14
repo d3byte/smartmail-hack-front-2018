@@ -1,7 +1,19 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial';
+  font-family: "Arial";
+}
+
+.more-button {
+  background: #b3b3b3;
+  border-style: none;
+  padding: 10px;
+  transition: 0.3s;
+  font-size: 13px;
+}
+
+.more-button:hover {
+  background: #9c9c9c;
 }
