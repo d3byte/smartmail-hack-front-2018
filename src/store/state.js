@@ -71,7 +71,7 @@ export default {
         { name: 'eps.png', data: eps },
         { name: 'exe.png', data: exe },
         { name: 'flv.png', data: flv },
-        { name: 'fx.png', data: fx },
+        { name: 'fw.png', data: fw },
         { name: 'gif.png', data: gif },
         { name: 'gz.png', data: gz },
         { name: 'html.png', data: html },
