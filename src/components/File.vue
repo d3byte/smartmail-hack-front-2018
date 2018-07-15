@@ -122,9 +122,10 @@ export default {
     font-size: 19px;
     color: #007adc;
     font-size: 15px;
-  }
-  a {
-    
+    &.disabled {
+      pointer-events: none;
+      color: gray;
+    }
   }
   .node-prewie {
     width: 300px;
