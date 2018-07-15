@@ -11,7 +11,7 @@
                 <span><label>Отправитель: </label>{{senderEmail}}</span>
             </div>
             <div class="node-img">
-                <img :src="((img || {}).data) || file" width="60px" height="75px" alt="Documents">
+                <img :src="img || file" width="60px" height="75px" alt="Documents">
             </div>
         </div>
         <div class="container-link">
@@ -83,6 +83,7 @@ export default {
     width: 100%;
     border-bottom: 1px solid #b9b9b9;
     padding: 5px 20px;
+    hyphens: auto;
   }
 
   div h3 {

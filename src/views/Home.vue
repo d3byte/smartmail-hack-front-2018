@@ -54,9 +54,11 @@ export default {
   },
   methods: {
     determineIcon(file) {
-      return this.icons.filter(
-        icon => file.content_type.split("/")[1] === icon.name
-      )[0];
+      const length = file.name.split('.').length
+      const icon = this.icons.filter(
+        icon => file.name.split(".")[length - 1] === icon.name
+      );
+      return (icon[0] || {}).data
     },
     async getUsers() {
       this.loadingUsers = true
