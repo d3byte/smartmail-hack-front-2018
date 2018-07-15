@@ -1,24 +1,28 @@
 <template>
   <div class="home">
-      <side-menu :collapsed="collapsed" v-model="collapsed" :folders="folders" @folder="e => currentFolder = e" />
-      <users 
-        :emptyMessages="emptyMessages"
-        :users="users"
-        :folder="currentFolder" 
-        :loading="loadingUsers"
-        :emailActiveUser="currentUser.email || null"
-        v-model="isSubjectVisible" 
-        @collapse="e => collapsed = e"
-        @user="e => currentUser = e" 
-      />
-      <subjects v-model="currentSubject" :loading="loadingSubjects" :subjects="subjects" v-if="isSubjectVisible" />
-    <div class="files" v-if="files.length > 0 && isSubjectVisible && !loadingFiles">
-      <file v-for="file in files" :key="file.id" :senderEmail="currentUser.email" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
+    <div class="wrapp-up">
+        <side-menu :collapsed="collapsed" v-model="collapsed" :folders="folders" @folder="e => currentFolder = e" />
+        <users 
+          :emptyMessages="emptyMessages"
+          :users="users"
+          :folder="currentFolder" 
+          :loading="loadingUsers"
+          :emailActiveUser="currentUser.email || null"
+          v-model="isSubjectVisible" 
+          @collapse="e => collapsed = e"
+          @user="e => currentUser = e" 
+        />
+        <subjects v-model="currentSubject" :loading="loadingSubjects" :subjects="subjects" v-if="isSubjectVisible" />
+      <div class="files" v-if="files.length > 0 && isSubjectVisible && !loadingFiles">
+        <file v-for="file in files" :key="file.id" :senderEmail="currentUser.email" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
+      </div>
+      <div v-if="files.length === 0 && isSubjectVisible && !loadingFiles" class="no-files">
+        <p>Выберите тему письма</p>
+      </div>
     </div>
-    <div v-if="files.length === 0 && isSubjectVisible && !loadingFiles" class="no-files">
-      <p>Выберите тему письма</p>
+    <div class="marketing">
+        <img src="../assets/marketing.png" alt="">
     </div>
-    <div class=""></div>
   </div>
 </template>
 
@@ -44,7 +48,7 @@ export default {
       files: [],
       loadingUsers: false,
       loadingSubjects: false,
-      loadingFiles: false,
+      loadingFiles: false
     };
   },
   computed: {
@@ -54,15 +58,15 @@ export default {
   },
   methods: {
     determineIcon(file) {
-      const length = file.name.split('.').length
+      const length = file.name.split(".").length;
       const icon = this.icons.filter(
         icon => file.name.split(".")[length - 1] === icon.name
       );
-      return (icon[0] || {}).data
+      return (icon[0] || {}).data;
     },
     async getUsers() {
-      this.loadingUsers = true
-      this.isSubjectVisible = false
+      this.loadingUsers = true;
+      this.isSubjectVisible = false;
       let response = await this.$http.get(
         `users?folder=${
           typeof this.currentFolder === "object"
@@ -72,12 +76,12 @@ export default {
       );
       this.users = response.body.users;
       if (response.body.users) {
-        this.loadingUsers = false
+        this.loadingUsers = false;
       }
     },
     async getSubjects() {
-      this.loadingSubjects = true
-      this.isSubjectVisible = false
+      this.loadingSubjects = true;
+      this.isSubjectVisible = false;
       const response = await this.$http.get(
         `get-users-letters?folder=${
           typeof this.currentFolder === "object"
@@ -87,17 +91,17 @@ export default {
       );
       this.subjects = response.body.subjects;
       if (response.body.subjects) {
-        this.loadingSubjects = false
+        this.loadingSubjects = false;
       }
       if (this.subjects.length > 0) {
-        console.log('s')
+        console.log("s");
         this.isSubjectVisible = true;
-        this.files = []
+        this.files = [];
       }
     },
     async getFiles() {
       if (this.currentSubject.date) {
-        this.loadingFiles = true
+        this.loadingFiles = true;
         const response = await this.$http.get(
           `get-attaches-letter?id=${this.currentSubject.id}&date=${
             this.currentSubject.date
@@ -105,10 +109,10 @@ export default {
         );
         this.files = response.body.files;
         if (response.body.files) {
-          this.loadingFiles = false
+          this.loadingFiles = false;
         }
       } else {
-        this.files = []
+        this.files = [];
       }
       // if (Object.keys(this.currentSubject).length === 0) {
       //   this.files = []
@@ -121,7 +125,7 @@ export default {
       this.getSubjects();
     },
     currentFolder() {
-      this.currentUser = {}
+      this.currentUser = {};
       if (
         typeof this.currentFolder === "object" &&
         this.currentFolder.messages_with_attachments === 0
@@ -136,7 +140,6 @@ export default {
       this.getSubjects();
     },
     currentSubject() {
-      
       this.getFiles();
     }
   },
@@ -155,14 +158,18 @@ export default {
 </script>
 
 <style lang="scss">
+.wrapp-up {
+  display: flex;
+}
 .home {
   display: flex;
+  justify-content: space-between;
 
   .files {
     overflow: scroll;
     height: calc(100vh - 50px);
     width: 50%;
-  } 
+  }
 
   .no-files {
     display: flex;
@@ -175,6 +182,8 @@ export default {
       font-size: 30px;
     }
   }
-  
+}
+.marketing {
+  margin: 20px;
 }
 </style>
