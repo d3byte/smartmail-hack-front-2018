@@ -76,13 +76,13 @@ nav.navigation-top {
   }
 
   input {
-    border-radius: 4px;
+    border-radius: 2px;
     border-style: none;
     width: 142px;
     height: 30px;
     border: none;
     &:placeholder {
-      font-size: 13px;
+      font-size: 15px;
     }
   }
 
