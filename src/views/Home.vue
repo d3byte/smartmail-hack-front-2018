@@ -164,6 +164,7 @@ export default {
 <style lang="scss">
 .wrapp-up {
   display: flex;
+  flex-grow: 1;
 }
 .home {
   display: flex;
@@ -172,15 +173,15 @@ export default {
   .files {
     overflow: scroll;
     height: calc(100vh - 50px);
-    width: 50%;
   }
 
   .no-files {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 661px;
+    flex-direction: column;
     font-size: 30px;
+    flex-grow: 1;
 
     .no-file {
       font-size: 30px;
@@ -189,5 +190,31 @@ export default {
 }
 .marketing {
   margin: 20px;
+}
+
+@media (max-width: 1024px) {
+  .marketing {
+    display: none;
+  }
+}
+
+@media (max-width: 840px) {
+  .users.hidden {
+    min-width: 70px !important;
+    max-width: 70px !important;
+
+    .back {
+      width: 70px !important;
+    }
+
+    .user-img {
+      padding: 5px !important;
+      margin: 0 auto !important;
+      img {
+        width: 32px !important;
+        height: 32px !important;
+      }
+    }
+  }
 }
 </style>
