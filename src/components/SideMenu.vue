@@ -128,7 +128,7 @@ export default {
       font-family: Arial, Helvetica, sans-serif;
       font-size: 15px;
       font-weight: normal;
-      padding: 2px 0;
+      padding: 10px 0;
       &.active {
         .image-wrapper {
           background: rgb(221, 221, 221);
