@@ -160,6 +160,7 @@ export default {
 <style lang="scss">
 .wrapp-up {
   display: flex;
+  flex-grow: 1;
 }
 .home {
   display: flex;
@@ -168,15 +169,15 @@ export default {
   .files {
     overflow: scroll;
     height: calc(100vh - 50px);
-    width: 50%;
   }
 
   .no-files {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 661px;
+    flex-direction: column;
     font-size: 30px;
+    flex-grow: 1;
 
     .no-file {
       font-size: 30px;
