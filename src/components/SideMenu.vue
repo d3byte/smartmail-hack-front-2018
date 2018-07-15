@@ -54,7 +54,22 @@ export default {
     },
     select(id) {
       this.active = id
-      this.$emit('folder', this.folders.filter(item => item.id === id)[0])
+      let found = false
+      const folder = this.folders.map(item => {
+        if (!found) {
+          if (item.id == id) {
+            found = true
+            return item
+          } else if (item.children.length > 0) {
+            const child = item.children.filter(child => child.id === id)[0]
+            if (child != undefined) {
+              found = true
+              return child
+            }
+          }
+        }
+      }).filter(item => item != undefined)[0]
+      this.$emit('folder', folder)
     },
     collapse() {
       this.$emit("input", !this.collapsed)

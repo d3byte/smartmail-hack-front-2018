@@ -6,6 +6,7 @@
       :users="users"
       :folder="currentFolder" 
       :loading="loadingUsers"
+      :emailActiveUser="currentUser.email || null"
       v-model="isSubjectVisible" 
       @collapse="e => collapsed = e"
       @user="e => currentUser = e" 
@@ -14,7 +15,9 @@
     <div class="files" v-if="files.length > 0 && isSubjectVisible && !loadingFiles">
       <file v-for="file in files" :key="file.id" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
     </div>
-    <p v-if="files.length === 0 && isSubjectVisible && !loadingFiles" class="no-file">Нет вложений</p>
+    <div v-if="files.length === 0 && isSubjectVisible && !loadingFiles" class="no-files">
+      <p>Выберите тему письма</p>
+    </div>
   </div>
 </template>
 
@@ -56,6 +59,7 @@ export default {
     },
     async getUsers() {
       this.loadingUsers = true
+      this.isSubjectVisible = false
       let response = await this.$http.get(
         `users?folder=${
           typeof this.currentFolder === "object"
@@ -70,6 +74,7 @@ export default {
     },
     async getSubjects() {
       this.loadingSubjects = true
+      this.isSubjectVisible = false
       const response = await this.$http.get(
         `get-users-letters?folder=${
           typeof this.currentFolder === "object"
@@ -78,9 +83,12 @@ export default {
         }&from=${this.currentUser.email}`
       );
       this.subjects = response.body.subjects;
-      this.isSubjectVisible = true;
       if (response.body.subjects) {
         this.loadingSubjects = false
+      }
+      if (this.subjects.length > 0) {
+        this.isSubjectVisible = true;
+        this.files = []
       }
     },
     async getFiles() {
@@ -101,6 +109,7 @@ export default {
       this.getSubjects();
     },
     currentFolder() {
+      this.currentUser = {}
       if (
         typeof this.currentFolder === "object" &&
         this.currentFolder.messages_with_attachments === 0
@@ -140,5 +149,18 @@ export default {
     overflow: scroll;
     height: calc(100vh - 50px);
   } 
+
+  .no-files {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 661px;
+    font-size: 30px;
+
+    .no-file {
+      font-size: 30px;
+    }
+  }
+  
 }
 </style>

@@ -22,14 +22,8 @@
 <script>
 import axios from 'axios'
 export default {
-  props: ['users', 'folder', 'emptyMessages', 'loading'],
+  props: ['users', 'folder', 'emptyMessages', 'loading', 'emailActiveUser'],
   name: "Users",
-  data() {
-    return {
-      emailActiveUser: null,
-      backButton: null,
-    };
-  },
   methods: {
     curl(id) {
       this.emailActiveUser = id;
@@ -46,6 +40,11 @@ export default {
       return;
     },
   },
+  computed: {
+    backButton() {
+      return this.emailActiveUser !== null ? this.emailActiveUser : null
+    }
+  }
 };
 </script>
 
