@@ -17,94 +17,112 @@
 </template>
 
 <script>
-import File from '@/components/File.vue'
-import SideMenu from '@/components/SideMenu.vue'
-import Subjects from '@/components/Subjects.vue'
-import Users from '@/components/Users.vue'
+import File from "@/components/File.vue";
+import SideMenu from "@/components/SideMenu.vue";
+import Subjects from "@/components/Subjects.vue";
+import Users from "@/components/Users.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
       isSubjectVisible: false,
       collapsed: false,
       folders: [],
-      currentFolder: '',
+      currentFolder: "",
       users: [],
       currentUser: {},
       emptyMessages: false,
       subjects: [],
       currentSubject: {},
-      files: [],
-    }
+      files: []
+    };
   },
   computed: {
     icons() {
-      return this.$store.state.icons
+      return this.$store.state.icons;
     }
   },
   methods: {
     determineIcon(file) {
-      return this.icons.filter(icon => file.content_type.split('/')[1] === icon.name)[0]
+      return this.icons.filter(
+        icon => file.content_type.split("/")[1] === icon.name
+      )[0];
     },
     async getUsers() {
-      let response = await this.$http.get(`users?folder=${
-        typeof this.currentFolder === 'object' ?
-          this.currentFolder.id :
-          this.currentFolder
-      }`)
-      this.users = response.body.users
+      let response = await this.$http.get(
+        `users?folder=${
+          typeof this.currentFolder === "object"
+            ? this.currentFolder.id
+            : this.currentFolder
+        }`
+      );
+      this.users = response.body.users;
     },
     async getSubjects() {
-      const response = await this.$http.get(`get-users-letters?folder=${
-        typeof this.currentFolder === 'object' ?
-          this.currentFolder.id :
-          this.currentFolder
-      }&from=${this.currentUser.email}`)
-      this.subjects = response.body.subjects
-      this.isSubjectVisible = true
+      const response = await this.$http.get(
+        `get-users-letters?folder=${
+          typeof this.currentFolder === "object"
+            ? this.currentFolder.id
+            : this.currentFolder
+        }&from=${this.currentUser.email}`
+      );
+      this.subjects = response.body.subjects;
+      this.isSubjectVisible = true;
     },
     async getFiles() {
-      const response = await this.$http.get(`get-attaches-letter?id=${this.currentSubject.id}&date=${this.currentSubject.date}`)
-      console.log(response)
-      this.files = response.body.files
+      const response = await this.$http.get(
+        `get-attaches-letter?id=${this.currentSubject.id}&date=${
+          this.currentSubject.date
+        }`
+      );
+      console.log(response);
+      this.files = response.body.files;
     }
   },
   watch: {
     currentUser() {
-      this.getSubjects()
+      this.getSubjects();
     },
     currentFolder() {
-      if (typeof this.currentFolder === 'object' && this.currentFolder.messages_with_attachments === 0) {
-        this.emptyMessages = true
-        this.isSubjectVisible = false
-        this.subjects = []
-        return
+      if (
+        typeof this.currentFolder === "object" &&
+        this.currentFolder.messages_with_attachments === 0
+      ) {
+        this.emptyMessages = true;
+        this.isSubjectVisible = false;
+        this.subjects = [];
+        return;
       }
-      this.emptyMessages = false
-      this.getUsers()
-      this.getSubjects()
+      this.emptyMessages = false;
+      this.getUsers();
+      this.getSubjects();
     },
     currentSubject() {
-      this.getFiles()
+      this.getFiles();
     }
   },
   async created() {
-    const { body } = await this.$http.get('get-directories')
-    this.folders = body.folders
-    this.getUsers()
+    const { body } = await this.$http.get("get-directories");
+    this.folders = body.folders;
+    this.getUsers();
   },
   components: {
-    File, 
-    'side-menu': SideMenu, 
-    'subjects': Subjects,
-    'users': Users,
+    File,
+    "side-menu": SideMenu,
+    subjects: Subjects,
+    users: Users
   }
-}
+};
 </script>
 
 <style lang="scss">
 .home {
   display: flex;
+}
+
+.files {
+  overflow: scroll;
+  height: calc(100vh - 50px);
 }
 </style>

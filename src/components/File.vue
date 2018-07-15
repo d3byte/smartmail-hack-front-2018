@@ -1,12 +1,14 @@
 <template>
 <div :key="data.id" class="node-item">
     <div class="container">
+        <div class="node-text--header">
+            <h3>{{text = data.name.slice(0, 45) + "..."}}</h3>
+        </div>
         <div class="container-node">
             <div class="node-text">
-                <h3>{{data.name}}</h3>
-                <span>{{data.date}}</span>
-                <span v-html="subject.subject"></span>
-                <span>{{data.size}} Б</span>
+                <span><label>Дата создания: </label>{{data.date}}</span>
+                <span><label>Тема письма: </label>{{slicedSubject}}</span>
+                <span><label>Размер файла: </label>{{data.size}} Б</span>
             </div>
             <div class="node-img">
                 <img :src="((img || {}).data) || file" width="45px" height="60px" alt="Documents">
@@ -24,46 +26,72 @@
 </template>
 
 <script>
-import file from '@/assets/docx/file.png'
+import file from "@/assets/docx/file.png";
+import he from "he";
 export default {
   name: "file",
-  props: ['img', 'data', 'subject'],
+  props: ["img", "data", "subject"],
   data() {
     return {
       file,
+      slicedSubject: ""
+    };
+  },
+  methods: {
+    decode(str) {
+      return he.decode(str);
     }
+  },
+  created() {
+    this.slicedSubject = this.decode(this.subject.subject).slice(0, 30) + "...";
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .node-item {
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px;
-  width: 300px;
-  background: white;
+  background: #e5e5e5;
   border-radius: 4px;
+  border: 1px solid #b9b9b9;
+  border-radius: 2px;
+  margin: 20px 30px 20px 30px;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 661px;
 }
 .container-node {
   display: flex;
+  padding: 15px 20px;
 }
 .node-text {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
   width: 70%;
   font-family: Arial, Helvetica, sans-serif;
+  & > span {
+    padding: 3px 0;
+  }
+}
+
+.node-text--header {
+  width: 100%;
+  border-bottom: 1px solid #b9b9b9;
+  padding: 15px 30px;
 }
 
 div h3 {
   margin-bottom: 5px;
   margin-top: 5px;
-  font-weight: normal;
-  font-size: 22px;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  line-height: 0;
 }
 div span {
   display: block;
@@ -74,20 +102,21 @@ div span {
 .node-img {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   width: 30%;
 }
 .container-link {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-direction: row;
-  padding: 15px 10px;
+  padding: 15px 20px;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
 }
 a {
   display: inline-block;
-  width: 50%;
+  padding: 0 25px 0 0;
 }
 a {
   text-decoration: none;
