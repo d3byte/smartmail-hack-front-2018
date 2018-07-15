@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  props: ['users', 'folder', 'emptyMessages', 'loading', 'emailActiveUser'],
+  props: ["users", "folder", "emptyMessages", "loading", "emailActiveUser"],
   name: "Users",
   methods: {
     curl(id) {
@@ -30,7 +30,7 @@ export default {
       this.backButton = id;
       this.$emit("input", true);
       this.$emit("collapse", true);
-      this.$emit('user', this.users.filter(user => user.email === id)[0])
+      this.$emit("user", this.users.filter(user => user.email === id)[0]);
       return;
     },
     backButtonEvent() {
@@ -38,11 +38,11 @@ export default {
       this.emailActiveUser = null;
       this.$emit("input", false);
       return;
-    },
+    }
   },
   computed: {
     backButton() {
-      return this.emailActiveUser !== null ? this.emailActiveUser : null
+      return this.emailActiveUser !== null ? this.emailActiveUser : null;
     }
   }
 };
@@ -130,8 +130,9 @@ section.users {
   }
 
   &.hidden {
-    width: 100px;
     padding-top: 40px;
+    min-width: 100px;
+    max-width: 100px;
 
     .user-data {
       display: none !important;
@@ -165,7 +166,6 @@ section.users {
     text-align: center;
     margin-top: 40px;
   }
-
 }
 
 .preloader {
@@ -189,7 +189,6 @@ section.users {
       transform: rotate(360deg);
     }
   }
-
 }
 </style>
 
