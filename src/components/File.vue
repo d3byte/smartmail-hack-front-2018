@@ -6,7 +6,7 @@
         </div>
         <div class="container-node">
             <div class="node-text">
-                <span><label>Дата создания: </label>{{data.date}}</span>
+                <span><label>Дата создания: </label>{{data.date | moment("DD/MM/YYYY, h:mm")}}</span>
                 <span><label>Тема письма: </label>{{slicedSubject}}</span>
                 <span><label>Размер файла: </label>{{data.size}} Б</span>
             </div>
