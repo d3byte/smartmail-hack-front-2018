@@ -115,7 +115,8 @@ export default {
   ],
   thumbnails: {
     xls: [Excel],
-    jpg: [Jpg],
+    jpg,
+    jpeg: [Jpg],
     pdf: [Pdf, Pdf1],
     png: [Png, Png1],
     ppt: [Ppt],
