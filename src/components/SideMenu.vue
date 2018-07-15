@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  props: ['collapsed', 'folders'],
+  props: ["collapsed", "folders"],
   data() {
     return {
       toggled: [],
@@ -47,32 +47,34 @@ export default {
   methods: {
     toggle(id) {
       if (this.toggled.includes(id)) {
-        this.toggled = this.toggled.filter(item => item !== id)
-        return
+        this.toggled = this.toggled.filter(item => item !== id);
+        return;
       }
-      this.toggled.push(id)
+      this.toggled.push(id);
     },
     select(id) {
-      this.active = id
-      let found = false
-      const folder = this.folders.map(item => {
-        if (!found) {
-          if (item.id == id) {
-            found = true
-            return item
-          } else if (item.children.length > 0) {
-            const child = item.children.filter(child => child.id === id)[0]
-            if (child != undefined) {
-              found = true
-              return child
+      this.active = id;
+      let found = false;
+      const folder = this.folders
+        .map(item => {
+          if (!found) {
+            if (item.id == id) {
+              found = true;
+              return item;
+            } else if (item.children.length > 0) {
+              const child = item.children.filter(child => child.id === id)[0];
+              if (child != undefined) {
+                found = true;
+                return child;
+              }
             }
           }
-        }
-      }).filter(item => item != undefined)[0]
-      this.$emit('folder', folder)
+        })
+        .filter(item => item != undefined)[0];
+      this.$emit("folder", folder);
     },
     collapse() {
-      this.$emit("input", !this.collapsed)
+      this.$emit("input", !this.collapsed);
     }
   }
 };
@@ -80,23 +82,24 @@ export default {
 
 <style lang="scss" scoped>
 .side-menu {
-  width: 250px;
+  min-width: 250px;
   height: 100vh;
   padding: 5px;
   border-right: 1px solid #b9b9b9;
   background: rgb(255, 255, 255);
   height: calc(100vh - 50px) !important;
-  -webkit-animation: slide-in .4s 1 ease-in-out;
-  -moz-animation: slide-in .4s 1 ease-in-out;
-  -o-animation: slide-in .4s 1 ease-in-out;
-  animation: slide-in .4s 1 ease-in-out;
+  -webkit-animation: slide-in 0.4s 1 ease-in-out;
+  -moz-animation: slide-in 0.4s 1 ease-in-out;
+  -o-animation: slide-in 0.4s 1 ease-in-out;
+  animation: slide-in 0.4s 1 ease-in-out;
   animation-fill-mode: forwards;
   &.collapsed {
-    -webkit-animation: slide-out .4s 1 ease-in-out;
-    -moz-animation: slide-out .4s 1 ease-in-out;
-    -o-animation: slide-out .4s 1 ease-in-out;
-    animation: slide-out .4s 1 ease-in-out;
+    -webkit-animation: slide-out 0.4s 1 ease-in-out;
+    -moz-animation: slide-out 0.4s 1 ease-in-out;
+    -o-animation: slide-out 0.4s 1 ease-in-out;
+    animation: slide-out 0.4s 1 ease-in-out;
     animation-fill-mode: forwards;
+    min-width: 70px !important;
 
     ul li {
       .menu-item {
@@ -134,7 +137,7 @@ export default {
 
       &.toggle-menu {
         border-bottom: 1px solid #b9b9b9;
-        padding-bottom: 6px; 
+        padding-bottom: 6px;
       }
 
       .menu-item {
@@ -150,7 +153,6 @@ export default {
         }
 
         .image-wrapper {
-          
           display: flex;
           align-items: center;
           justify-content: center;
@@ -191,7 +193,6 @@ export default {
           display: none;
         }
       }
-
     }
   }
 }
