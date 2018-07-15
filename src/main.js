@@ -3,9 +3,10 @@ import VueResource from "vue-resource";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import moment from "moment";
 
 Vue.use(VueResource);
-Vue.use(require("vue-moment"));
+Vue.use(require("vue-moment"), { moment });
 
 Vue.http.options.root = "http://localhost:3000/";
 

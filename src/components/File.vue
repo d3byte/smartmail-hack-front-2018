@@ -6,9 +6,9 @@
         </div>
         <div class="container-node">
             <div class="node-text">
-                <span><label>Дата создания: </label>{{data.date | moment("DD/MM/YYYY, h:mm")}}</span>
+                <span><label>Дата создания: </label>{{data.date | moment("D MMMM YYYY, h:mm")}}</span>
                 <span><label>Тема письма: </label>{{slicedSubject}}</span>
-                <span><label>Размер файла: </label>{{data.size}} Б</span>
+                <span><label>Размер файла: </label>{{convertSize(data.size)}}</span>
             </div>
             <div class="node-img">
                 <img :src="((img || {}).data) || file" width="45px" height="60px" alt="Documents">
@@ -28,6 +28,7 @@
 <script>
 import file from "@/assets/docx/file.png";
 import he from "he";
+import filesize from "filesize";
 export default {
   name: "file",
   props: ["img", "data", "subject"],
@@ -40,10 +41,17 @@ export default {
   methods: {
     decode(str) {
       return he.decode(str);
+    },
+    convertSize(str) {
+      return filesize(str, {
+        fullform: true,
+        fullforms: ["Б", "КБ", "МБ", "ГБ", "ТБ"]
+      });
     }
   },
   created() {
     this.slicedSubject = this.decode(this.subject.subject).slice(0, 30) + "...";
+    this.$moment.locale("ru");
   }
 };
 </script>
