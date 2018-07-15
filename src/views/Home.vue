@@ -87,21 +87,30 @@ export default {
         this.loadingSubjects = false
       }
       if (this.subjects.length > 0) {
+        console.log('s')
         this.isSubjectVisible = true;
         this.files = []
       }
     },
     async getFiles() {
-      this.loadingFiles = true
-      const response = await this.$http.get(
-        `get-attaches-letter?id=${this.currentSubject.id}&date=${
-          this.currentSubject.date
-        }`
-      );
-      this.files = response.body.files;
-      if (response.body.files) {
-        this.loadingFiles = false
+      if (this.currentSubject.date) {
+        this.loadingFiles = true
+        const response = await this.$http.get(
+          `get-attaches-letter?id=${this.currentSubject.id}&date=${
+            this.currentSubject.date
+          }`
+        );
+        this.files = response.body.files;
+        if (response.body.files) {
+          this.loadingFiles = false
+        }
+      } else {
+        this.files = []
       }
+      // if (Object.keys(this.currentSubject).length === 0) {
+      //   this.files = []
+      //   return
+      // }
     }
   },
   watch: {
@@ -124,6 +133,7 @@ export default {
       this.getSubjects();
     },
     currentSubject() {
+      
       this.getFiles();
     }
   },
