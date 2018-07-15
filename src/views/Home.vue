@@ -187,4 +187,30 @@ export default {
 .marketing {
   margin: 20px;
 }
+
+@media (max-width: 1024px) {
+  .marketing {
+    display: none;
+  }
+}
+
+@media (max-width: 840px) {
+  .users.hidden {
+    min-width: 70px !important;
+    max-width: 70px !important;
+
+    .back {
+      width: 70px !important;
+    }
+
+    .user-img {
+      padding: 5px !important;
+      margin: 0 auto !important;
+      img {
+        width: 32px !important;
+        height: 32px !important;
+      }
+    }
+  }
+}
 </style>
