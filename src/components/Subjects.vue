@@ -11,7 +11,7 @@
         </div>
       </div>
       <div v-if="!loading" class="subjects-bottom">
-        <button class="more-button">Загрузить ещё</button>
+        <button v-if="subjects.length >= 25" class="more-button">Загрузить ещё</button>
       </div>
       <div v-if="loading" class="preloader">
         <img src="@/assets/icons/settings-icon.svg" />
