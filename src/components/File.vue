@@ -74,6 +74,7 @@ export default {
     flex-direction: column;
     width: 70%;
     font-family: Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
     & > span {
       padding: 3px 0;
     }
@@ -84,6 +85,7 @@ export default {
     border-bottom: 1px solid #b9b9b9;
     padding: 5px 20px;
     hyphens: auto;
+    word-wrap: break-word;
   }
 
   div h3 {
@@ -112,6 +114,7 @@ export default {
     display: flex;
     align-items: flex-start;
     flex-direction: row;
+    flex-wrap: wrap;
     padding: 15px 20px;
     font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;

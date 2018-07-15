@@ -97,6 +97,7 @@ export default {
         { name: 'swf', data: swf },
         { name: 'sys', data: sys },
         { name: 'tar', data: tar },
+        { name: 'tif', data: tiff },
         { name: 'tiff', data: tiff },
         { name: 'txt', data: txt },
         { name: 'wav', data: wav },
