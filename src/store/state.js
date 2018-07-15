@@ -48,6 +48,15 @@ import tiff from '../assets/docx/tiff.png'
 import txt from '../assets/docx/txt.png'
 import wav from '../assets/docx/wav.png'
 import zip from '../assets/docx/zip.png'
+///////////////////////////////////////
+import Excel from '../assets/thumbnails/excel.jpg'
+import Jpg from '../assets/thumbnails/jpg.jpg'
+import Pdf from '../assets/thumbnails/pdf.jpg'
+import Pdf1 from '../assets/thumbnails/pdf1.jpg'
+import Png from '../assets/thumbnails/png.jpg'
+import Png1 from '../assets/thumbnails/png1.jpg'
+import Ppt from '../assets/thumbnails/ppt.jpg'
+import Psd from '../assets/thumbnails/psd.jpg'
 
 export default {
     icons: [
@@ -103,4 +112,13 @@ export default {
         { name: 'wav', data: wav },
         { name: 'zip', data: zip },
     ],
+    thumbnails: {
+        xls: [Excel],
+        jpg: [Jpg],
+        pdf: [Pdf, Pdf1],
+        png: [Png, Png1],
+        ppt: [Ppt],
+        pptx: [Ppt],
+        psd: [Psd]
+    },
 }

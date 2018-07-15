@@ -166,6 +166,9 @@ section.users {
   .no-attaches {
     text-align: center;
     margin-top: 40px;
+    &:not(:first-of-type) {
+      display: none;
+    }
   }
 }
 

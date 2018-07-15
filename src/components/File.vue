@@ -1,25 +1,24 @@
 <template>
-
-    <div class="container">
-        <div class="node-text--header">
-            <h3>{{ data.name}}</h3>
+<div class="container">
+    <div class="node-text--header">
+        <h3>{{ data.name}}</h3>
+    </div>
+    <div class="container-node">
+        <div class="node-text">
+            <span><label>Дата создания: </label>{{data.date | moment("D MMMM YYYY, h:mm")}}</span>
+            <span><label>Размер файла: </label>{{convertSize(data.size)}}</span>
+            <span><label>Отправитель: </label>{{senderEmail}}</span>
         </div>
-        <div class="container-node">
-            <div class="node-text">
-                <span><label>Дата создания: </label>{{data.date | moment("D MMMM YYYY, h:mm")}}</span>
-                <span><label>Размер файла: </label>{{convertSize(data.size)}}</span>
-                <span><label>Отправитель: </label>{{senderEmail}}</span>
-            </div>
-            <div class="node-img">
-                <img :src="img || file" width="60px" height="75px" alt="Documents">
-            </div>
-        </div>
-        <div class="container-link">
-            <a :href="data.href.view || ''" :class="data.href.view ? '' : 'disabled'" target="_blank">Посмотреть</a>
-            <a :href="data.href.download || ''" target="_blank">Скачать</a>
+        <div class="node-img">
+            <img :src="img || file" width="60px" height="75px" alt="Documents">
         </div>
     </div>
-
+    <div class="container-link">
+        <a :href="data.href.view || ''" :class="data.href.view ? '' : 'disabled'" target="_blank">Посмотреть</a>
+        <a :href="data.href.download || ''" target="_blank">Скачать</a>
+    </div>
+    <img v-if="thumbnail.length > 0" :src="thumbnail" class="node-preview" />
+</div>
 </template>
 
 <script>
@@ -28,7 +27,7 @@ import he from "he";
 import filesize from "filesize";
 export default {
   name: "file",
-  props: ["img", "data", "subject", "senderEmail"],
+  props: ["img", "data", "subject", "senderEmail", "thumbnail"],
   data() {
     return {
       file,
@@ -55,6 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -63,6 +63,10 @@ export default {
   border: 1px solid #b9b9b9;
   border-radius: 2px;
   margin: 20px 30px;
+
+  & > *:not(.container-link):hover ~ .node-preview {
+    opacity: 1;
+  }
 
   .container-node {
     display: flex;
@@ -131,11 +135,18 @@ export default {
       color: gray;
     }
   }
-  .node-prewie {
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 15px;
+  .node-preview {
+    transition: .4s;
+    pointer-events: none;
+    opacity: 0;
+    position: absolute;
+    right: 30px;
+    top: 45px;
+    width: 150px;
+    margin: 0 auto;
+    box-shadow: 0 0px 20px 0 rgba(0, 0, 0, .16);
+    border-radius: 8px;
+    z-index: 10000;
   }
 
 }

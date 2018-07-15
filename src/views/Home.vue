@@ -12,9 +12,24 @@
           @collapse="e => collapsed = e"
           @user="e => currentUser = e" 
         />
-        <subjects v-model="currentSubject" @showMore="showMoreSubjects" :hideButton="shownSubjects.length === subjects.length" :loading="loadingSubjects" :subjects="shownSubjects" v-if="isSubjectVisible" />
+        <subjects 
+          v-if="isSubjectVisible"
+          v-model="currentSubject" 
+          @showMore="showMoreSubjects" 
+          :hideButton="shownSubjects.length === subjects.length" 
+          :loading="loadingSubjects" 
+          :subjects="shownSubjects"
+        />
       <div class="files" v-if="files.length > 0 && isSubjectVisible && !loadingFiles">
-        <file v-for="file in files" :key="file.id" :senderEmail="currentUser.email" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
+        <file 
+          v-for="file in files" 
+          :key="file.id" 
+          :senderEmail="currentUser.email" 
+          :img="determineIcon(file)" 
+          :data="file" 
+          :subject="currentSubject"
+          :thumbnail="getThumbnail(file)"
+        />
       </div>
       <div v-if="files.length === 0 && isSubjectVisible && !loadingFiles" class="no-files">
         <p>Выберите тему письма</p>
@@ -37,7 +52,7 @@ export default {
   data() {
     return {
       isSubjectVisible: false,
-      collapsed: false,
+      collapsed: true,
       folders: [],
       currentFolder: "",
       users: [],
@@ -55,6 +70,9 @@ export default {
   computed: {
     icons() {
       return this.$store.state.icons;
+    },
+    thumbnails() {
+      return this.$store.state.thumbnails
     }
   },
   methods: {
@@ -64,6 +82,14 @@ export default {
         icon => file.name.split(".")[length - 1] === icon.name
       );
       return (icon[0] || {}).data;
+    },
+    getThumbnail(file) {
+      const length = file.name.split(".").length;
+      const ext = file.name.split(".")[length - 1]
+      const thumbnails = this.thumbnails[ext] || []
+      const random = Math.floor(Math.random() * (thumbnails.length - 1))
+      console.log(thumbnails, random, ext)
+      return thumbnails[random] || ''
     },
     async getUsers() {
       this.loadingUsers = true;
