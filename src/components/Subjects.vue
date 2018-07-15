@@ -11,7 +11,7 @@
         </div>
       </div>
       <div v-if="!loading" class="subjects-bottom">
-        <button v-if="subjects.length >= 25" class="more-button">Загрузить ещё</button>
+        <button v-if="subjects.length >= 25 && !hideButton" class="more-button" @click="showMore">Загрузить ещё</button>
       </div>
       <div v-if="loading" class="preloader">
         <img src="@/assets/icons/settings-icon.svg" />
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  props: ['subjects', 'loading'],
+  props: ['subjects', 'loading', 'hideButton'],
   name: "Subjects",
   data() {
     return {
@@ -43,6 +43,9 @@ export default {
     deSelectSubject() {
       this.idActiveSubject = null
       this.$emit('input', { id: '' })
+    },
+    showMore() {
+      this.$emit('showMore')
     }
   },
   components: {}
@@ -135,6 +138,8 @@ section.subjects {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      word-wrap: break-word;
+      word-break: break-all;
 
       h4,
       p {

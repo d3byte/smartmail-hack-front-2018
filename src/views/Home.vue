@@ -12,7 +12,7 @@
           @collapse="e => collapsed = e"
           @user="e => currentUser = e" 
         />
-        <subjects v-model="currentSubject" :loading="loadingSubjects" :subjects="subjects" v-if="isSubjectVisible" />
+        <subjects v-model="currentSubject" @showMore="showMoreSubjects" :hideButton="shownSubjects.length === subjects.length" :loading="loadingSubjects" :subjects="shownSubjects" v-if="isSubjectVisible" />
       <div class="files" v-if="files.length > 0 && isSubjectVisible && !loadingFiles">
         <file v-for="file in files" :key="file.id" :senderEmail="currentUser.email" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
       </div>
@@ -45,10 +45,11 @@ export default {
       emptyMessages: false,
       subjects: [],
       currentSubject: {},
+      shownSubjects: [],
       files: [],
       loadingUsers: false,
       loadingSubjects: false,
-      loadingFiles: false
+      loadingFiles: false,
     };
   },
   computed: {
@@ -90,14 +91,17 @@ export default {
         }&from=${this.currentUser.email}`
       );
       this.subjects = response.body.subjects;
+      this.shownSubjects = this.subjects.slice(0, 25)
       if (response.body.subjects) {
         this.loadingSubjects = false;
       }
       if (this.subjects.length > 0) {
-        console.log("s");
         this.isSubjectVisible = true;
         this.files = [];
       }
+    },
+    showMoreSubjects() {
+      this.shownSubjects = this.subjects.slice(0, this.shownSubjects.length + 25)
     },
     async getFiles() {
       if (this.currentSubject.date) {
