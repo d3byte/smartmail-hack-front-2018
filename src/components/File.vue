@@ -61,7 +61,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 661px;
+  width: 600px;
 }
 .container-node {
   display: flex;
