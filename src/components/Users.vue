@@ -37,6 +37,7 @@ export default {
       this.backButton = null;
       this.emailActiveUser = null;
       this.$emit("input", false);
+      this.$emit("user", {});
       return;
     }
   },

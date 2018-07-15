@@ -1,23 +1,24 @@
 <template>
   <div class="home">
-    <side-menu :collapsed="collapsed" v-model="collapsed" :folders="folders" @folder="e => currentFolder = e" />
-    <users 
-      :emptyMessages="emptyMessages"
-      :users="users"
-      :folder="currentFolder" 
-      :loading="loadingUsers"
-      :emailActiveUser="currentUser.email || null"
-      v-model="isSubjectVisible" 
-      @collapse="e => collapsed = e"
-      @user="e => currentUser = e" 
-    />
-    <subjects v-model="currentSubject" :loading="loadingSubjects" :subjects="subjects" v-if="isSubjectVisible" />
+      <side-menu :collapsed="collapsed" v-model="collapsed" :folders="folders" @folder="e => currentFolder = e" />
+      <users 
+        :emptyMessages="emptyMessages"
+        :users="users"
+        :folder="currentFolder" 
+        :loading="loadingUsers"
+        :emailActiveUser="currentUser.email || null"
+        v-model="isSubjectVisible" 
+        @collapse="e => collapsed = e"
+        @user="e => currentUser = e" 
+      />
+      <subjects v-model="currentSubject" :loading="loadingSubjects" :subjects="subjects" v-if="isSubjectVisible" />
     <div class="files" v-if="files.length > 0 && isSubjectVisible && !loadingFiles">
-      <file v-for="file in files" :key="file.id" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
+      <file v-for="file in files" :key="file.id" :senderEmail="currentUser.email" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
     </div>
     <div v-if="files.length === 0 && isSubjectVisible && !loadingFiles" class="no-files">
       <p>Выберите тему письма</p>
     </div>
+    <div class=""></div>
   </div>
 </template>
 
@@ -158,6 +159,7 @@ export default {
   .files {
     overflow: scroll;
     height: calc(100vh - 50px);
+    width: 50%;
   } 
 
   .no-files {
