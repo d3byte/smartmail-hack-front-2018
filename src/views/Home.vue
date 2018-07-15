@@ -2,17 +2,19 @@
   <div class="home">
     <side-menu :collapsed="collapsed" v-model="collapsed" :folders="folders" @folder="e => currentFolder = e" />
     <users 
-      :emptyMessages="emptyMessages" :users="users" 
+      :emptyMessages="emptyMessages"
+      :users="users"
       :folder="currentFolder" 
+      :loading="loadingUsers"
       v-model="isSubjectVisible" 
       @collapse="e => collapsed = e"
       @user="e => currentUser = e" 
     />
-    <subjects v-model="currentSubject" :subjects="subjects" v-if="isSubjectVisible" />
-    <div class="files" v-if="files.length > 0 && isSubjectVisible">
+    <subjects v-model="currentSubject" :loading="loadingSubjects" :subjects="subjects" v-if="isSubjectVisible" />
+    <div class="files" v-if="files.length > 0 && isSubjectVisible && !loadingFiles">
       <file v-for="file in files" :key="file.id" :img="determineIcon(file)" :data="file" :subject="currentSubject" />
     </div>
-    <p v-else class="no-file">Нет вложений</p>
+    <p v-if="files.length === 0 && isSubjectVisible && !loadingFiles" class="no-file">Нет вложений</p>
   </div>
 </template>
 
@@ -35,7 +37,10 @@ export default {
       emptyMessages: false,
       subjects: [],
       currentSubject: {},
-      files: []
+      files: [],
+      loadingUsers: false,
+      loadingSubjects: false,
+      loadingFiles: false,
     };
   },
   computed: {
@@ -50,6 +55,7 @@ export default {
       )[0];
     },
     async getUsers() {
+      this.loadingUsers = true
       let response = await this.$http.get(
         `users?folder=${
           typeof this.currentFolder === "object"
@@ -58,8 +64,12 @@ export default {
         }`
       );
       this.users = response.body.users;
+      if (response.body.users) {
+        this.loadingUsers = false
+      }
     },
     async getSubjects() {
+      this.loadingSubjects = true
       const response = await this.$http.get(
         `get-users-letters?folder=${
           typeof this.currentFolder === "object"
@@ -69,15 +79,21 @@ export default {
       );
       this.subjects = response.body.subjects;
       this.isSubjectVisible = true;
+      if (response.body.subjects) {
+        this.loadingSubjects = false
+      }
     },
     async getFiles() {
+      this.loadingFiles = true
       const response = await this.$http.get(
         `get-attaches-letter?id=${this.currentSubject.id}&date=${
           this.currentSubject.date
         }`
       );
-      console.log(response);
       this.files = response.body.files;
+      if (response.body.files) {
+        this.loadingFiles = false
+      }
     }
   },
   watch: {
@@ -119,10 +135,10 @@ export default {
 <style lang="scss">
 .home {
   display: flex;
-}
 
-.files {
-  overflow: scroll;
-  height: calc(100vh - 50px);
+  .files {
+    overflow: scroll;
+    height: calc(100vh - 50px);
+  } 
 }
 </style>

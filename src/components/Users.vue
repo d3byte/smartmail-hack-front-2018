@@ -12,14 +12,17 @@
                 <p>{{user.email}}</p>
             </div>
         </div>
-        <p class="no-attaches" v-else>Нет сообщений с вложениями</p>
+        <p class="no-attaches" v-else-if="emptyMessages && !loading">Нет сообщений с вложениями</p>
+        <div v-if="loading" class="preloader">
+          <img src="@/assets/icons/settings-icon.svg" />
+        </div>
     </section>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-  props: ['users', 'folder', 'emptyMessages'],
+  props: ['users', 'folder', 'emptyMessages', 'loading'],
   name: "Users",
   data() {
     return {
@@ -162,6 +165,30 @@ section.users {
   .no-attaches {
     text-align: center;
     margin-top: 40px;
+  }
+
+}
+
+.preloader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 30px 0;
+  img {
+    -webkit-animation: spin 1s infinite ease-in-out;
+    -moz-animation: spin 1s infinite ease-in-out;
+    -o-animation: spin 1s infinite ease-in-out;
+    animation: spin 1s infinite ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
 }

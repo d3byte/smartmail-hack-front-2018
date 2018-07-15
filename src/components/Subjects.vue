@@ -1,25 +1,28 @@
 
 <template>
-    <div class="subjects-wrapper">
+  <div class="subjects-wrapper">
     <section class="subjects">
       <div class="less-button" v-show="idActiveSubject !== null" @click="deSelectSubject">
-            <p>Все темы</p>
+        <p>Все темы</p>
+      </div>
+      <div v-if="!loading" :class="'subjects-item ' + (idActiveSubject === subject.id ? 'active ' : '') + (index === subjects.length - 1 ? 'no-border' : '')" @click="() => curl(subject.id)" v-for="(subject, index) in subjects" :key="index">
+        <div class="subject-data">
+          <p v-html="subject.subject"></p>
         </div>
-        <div :class="'subjects-item ' + (idActiveSubject === subject.id ? 'active ' : '') + (index === subjects.length - 1 ? 'no-border' : '')" @click="() => curl(subject.id)" v-for="(subject, index) in subjects" :key="index">
-            <div class="subject-data">
-                <p v-html="subject.subject"></p>
-            </div>
-        </div>
-        <div class="subjects-bottom">
-          <button class="more-button">Загрузить ещё</button>
-        </div>
+      </div>
+      <div v-if="!loading" class="subjects-bottom">
+        <button class="more-button">Загрузить ещё</button>
+      </div>
+      <div v-if="loading" class="preloader">
+        <img src="@/assets/icons/settings-icon.svg" />
+      </div>
     </section>
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ['subjects'],
+  props: ['subjects', 'loading'],
   name: "Subjects",
   data() {
     return {
@@ -29,16 +32,17 @@ export default {
   },
   methods: {
     curl(id) {
-      this.idActiveSubject = id;
+      this.idActiveSubject = id
       this.$emit('input', this.subjects.filter(filter => filter.id === id)[0])
       return;
     },
     backButtonEvent() {
-      this.backButton = null;
+      this.backButton = null
       return;
     },
     deSelectSubject() {
-      this.idActiveSubject = null;
+      this.idActiveSubject = null
+      this.$emit('input', { id: '' })
     }
   },
   components: {}
