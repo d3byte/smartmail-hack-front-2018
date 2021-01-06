@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "filesize": "^3.6.1",
     "he": "^1.1.1",
     "moment": "^2.22.2",
